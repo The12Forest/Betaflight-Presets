@@ -144,11 +144,17 @@
       "The12Forest"
     ],
     "keywords": [
+      "5\"",
       "DarkStar",
       "DarkStar22",
       "defalut",
       "defaults",
+      "F7V3",
+      "GPS",
       "Manuel",
+      "rescue",
+      "SpeedyBee",
+      "SPEEDYBEEF7V3",
       "The12Forest"
     ]
   },
@@ -178,9 +184,9 @@
       "priority": 0
     },
     {
-      "fullPath": "presets/4.5/Manuel_5_inch.txt",
-      "hash": "631bc5c8ca3b15b1ff421e85a836e1bd78d7c3a6bd620c4fa957bcc488c683b7",
-      "title": "Manuel 5\" Defaults",
+      "fullPath": "presets/4.5/The12Forest_5_inch.txt",
+      "hash": "8aa81d71559eb60a4a27457aef9af5195a5128e7fdbb576ed403ccbf42101bd4",
+      "title": "Main 5\" SPEEDYBEEF7V3 Defaults",
       "firmware_version": [
         "4.5"
       ],
@@ -188,9 +194,13 @@
       "status": "COMMUNITY",
       "keywords": [
         "defaults",
-        "defalut",
-        "Manuel",
-        "The12Forest"
+        "5\"",
+        "The12Forest",
+        "SpeedyBee",
+        "SPEEDYBEEF7V3",
+        "F7V3",
+        "GPS",
+        "rescue"
       ],
       "author": "The12Forest",
       "force_options_review": true,

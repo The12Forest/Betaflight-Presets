@@ -155,7 +155,7 @@
   "presets": [
     {
       "fullPath": "presets/2025.12/Darkstar_22_Defaults.txt",
-      "hash": "2b84bc8433ce4da1e5250e3ee679404d0b69903a935ddae9da2edf4ec0dc2f34",
+      "hash": "6cf9dc8e161568bb2e153db36a5e69386b21194d86ecc1e86e0cedf4740c592b",
       "title": "DarkStar 22 Defaults",
       "firmware_version": [
         "4.5",
@@ -179,7 +179,7 @@
     },
     {
       "fullPath": "presets/4.5/Manuel_5_inch.txt",
-      "hash": "d2261067efde2f19c573f35e02b97c682539c92e6e91de08864b730677b80659",
+      "hash": "631bc5c8ca3b15b1ff421e85a836e1bd78d7c3a6bd620c4fa957bcc488c683b7",
       "title": "Manuel 5\" Defaults",
       "firmware_version": [
         "4.5"

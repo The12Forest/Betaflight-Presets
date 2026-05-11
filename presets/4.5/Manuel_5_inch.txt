@@ -12,6 +12,177 @@
 
 defaults nosave
 
+# version
+# Betaflight / STM32F405 (F405) 2025.12.1 Jan 20 2026 / 08:09:27 (85d201376) MSP API: 1.47
+# config rev: 46f5576
+
+# start the command batch
+batch start
+
+# reset configuration to default settings
+defaults nosave
+
+board_name GEPRC_TAKER_F405AIO
+manufacturer_id GEPR
+mcu_id 004e00533130500b20353248
+signature 
+
+# name: DarkStar 22
+
+# resources
+resource MOTOR 3 C08
+resource MOTOR 4 C09
+resource SERIAL_TX 5 NONE
+resource PINIO 2 C12
+
+# timer
+timer C08 AF3
+# pin C08: TIM8 CH3 (AF3)
+timer C09 AF3
+# pin C09: TIM8 CH4 (AF3)
+
+# dma
+dma pin C08 1
+# pin C08: DMA2 Stream 4 Channel 7
+dma pin C09 0
+# pin C09: DMA2 Stream 7 Channel 7
+
+# feature
+feature TELEMETRY
+feature LED_STRIP
+feature OSD
+
+# serial
+serial UART1 131073 115200 57600 0 115200
+
+# beeper
+beeper -ON_USB
+
+# beacon
+beacon RX_LOST
+beacon RX_SET
+
+# aux
+aux 0 0 0 1700 2100 0 0
+aux 1 1 1 1700 2100 0 0
+aux 2 13 2 1700 2100 0 0
+aux 3 40 3 1700 2100 0 0
+
+# master
+set gyro_lpf1_static_hz = 0
+set gyro_lpf2_static_hz = 650
+set dyn_notch_count = 1
+set dyn_notch_q = 500
+set dyn_notch_min_hz = 75
+set gyro_lpf1_dyn_min_hz = 325
+set gyro_lpf1_dyn_max_hz = 650
+set acc_calibration = 28,56,-5,1
+set rc_smoothing_auto_factor = 60
+set motor_idle = 900
+set dshot_bidir = ON
+set motor_pwm_protocol = DSHOT300
+set motor_poles = 12
+set vbat_max_cell_voltage = 440
+set beeper_dshot_beacon_tone = 2
+set mixer_type = EZLANDING
+set small_angle = 180
+set gps_sbas_mode = AUTO
+set gps_ublox_use_galileo = ON
+set gps_set_home_point_once = ON
+set deadband = 5
+set yaw_deadband = 5
+set pid_process_denom = 2
+set simplified_gyro_filter_multiplier = 130
+set osd_vbat_pos = 2595
+set osd_link_quality_pos = 2243
+set osd_rssi_dbm_pos = 2275
+set osd_tim_2_pos = 2082
+set osd_flymode_pos = 2105
+set osd_throttle_pos = 2137
+set osd_altitude_pos = 2114
+set osd_debug_pos = 363
+set osd_avg_cell_voltage_pos = 2563
+set osd_nheading_pos = 3110
+set osd_stat_bitmask = 1879062316
+set debug_mode = MULTI_GYRO_SCALED
+set pinio_config = 129,1,1,1
+set pinio_box = 39,40,41,42
+set rpm_filter_min_hz = 75
+set craft_name = DarkStar 22
+set pilot_name = DarkStar 22
+
+profile 0
+
+# profile 0
+set dterm_lpf1_dyn_min_hz = 60
+set dterm_lpf1_dyn_max_hz = 120
+set dterm_lpf1_type = PT2
+set dterm_lpf1_static_hz = 60
+set dterm_lpf2_type = PT2
+set dterm_lpf2_static_hz = 120
+set dterm_notch_hz = 59
+set dterm_notch_cutoff = 51
+set anti_gravity_gain = 120
+set iterm_relax = RP_INC
+set iterm_relax_type = GYRO
+set throttle_boost = 0
+set p_pitch = 56
+set i_pitch = 115
+set d_pitch = 42
+set f_pitch = 168
+set p_roll = 43
+set i_roll = 88
+set d_roll = 34
+set f_roll = 129
+set p_yaw = 43
+set i_yaw = 88
+set f_yaw = 129
+set angle_p_gain = 80
+set d_max_pitch = 50
+set feedforward_jitter_factor = 10
+set simplified_master_multiplier = 120
+set simplified_i_gain = 115
+set simplified_d_gain = 95
+set simplified_pi_gain = 80
+set simplified_d_max_gain = 55
+set simplified_feedforward_gain = 90
+set simplified_pitch_d_gain = 110
+set simplified_pitch_pi_gain = 125
+set simplified_dterm_filter_multiplier = 80
+set tpa_rate = 30
+set tpa_breakpoint = 1750
+set ez_landing_limit = 11
+
+profile 1
+
+profile 2
+
+profile 3
+
+# restore original profile selection
+profile 0
+
+rateprofile 0
+
+# rateprofile 0
+set roll_rc_rate = 4
+set pitch_rc_rate = 4
+set yaw_rc_rate = 4
+set roll_srate = 60
+set pitch_srate = 60
+set yaw_srate = 60
+
+rateprofile 1
+
+rateprofile 2
+
+rateprofile 3
+
+# restore original rateprofile selection
+rateprofile 0
+
+# save configuration
+
 #$ OPTION_GROUP BEGIN: OSD
     #$ OPTION BEGIN (CHECKED): 1219S Profile
         profile 0

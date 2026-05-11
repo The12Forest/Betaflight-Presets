@@ -12,7 +12,6 @@
 #$ FORCE_OPTIONS_REVIEW: TRUE
 
 defaults nosave
-defaults nosave
 
 
 # version

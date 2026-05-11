@@ -9,7 +9,7 @@
 #$ DISCLAIMER: The VTX table and settings in this preset are for educational purposes only. Users assume all responsibility for complying with local RF laws and regulations.
 #$ WARNING: This preset sets the motor protocol to DSHOT300. Ensure your ESCs support DSHOT to avoid unintended motor activation.
 #$ DISCUSSION: https://github.com/The12Forest/Betaflight-Presets
-#$ FORCE_OPTIONS_REVIEW: TRUE
+
 
 defaults nosave
 

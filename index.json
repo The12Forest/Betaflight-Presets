@@ -155,9 +155,10 @@
   "presets": [
     {
       "fullPath": "presets/2025.12/Darkstar_22_Defaults.txt",
-      "hash": "7a32cf9d9ebeb4f1139521556bec9e6477a630bf2f50dc0ceb7dff2728a07d22",
+      "hash": "2b84bc8433ce4da1e5250e3ee679404d0b69903a935ddae9da2edf4ec0dc2f34",
       "title": "DarkStar 22 Defaults",
       "firmware_version": [
+        "4.5",
         "2025.12"
       ],
       "category": "BNF",

@@ -1,8 +1,8 @@
-#$ TITLE: Manuel 5" Defaults
+#$ TITLE: DarkStar 22 Defaults
 #$ FIRMWARE_VERSION: 2025.12.1
 #$ CATEGORY: BNF
 #$ STATUS: COMMUNITY
-#$ KEYWORDS: defaults, defalut, Manuel, The12Forest
+#$ KEYWORDS: defaults, defalut, Manuel, The12Forest, DarkStar, darkstar, DarkStar22, darkstar22
 #$ AUTHOR: The12Forest
 #$ DESCRIPTION: This applies The12Forest current setting for his 5" Quad!
 #$ DISCLAIMER: The VTX table and settings in this preset are for educational purposes only. Users assume all responsibility for complying with local RF laws and regulations.

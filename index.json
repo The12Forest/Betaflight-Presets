@@ -144,6 +144,8 @@
       "The12Forest"
     ],
     "keywords": [
+      "DarkStar",
+      "DarkStar22",
       "defalut",
       "defaults",
       "Manuel",
@@ -153,8 +155,8 @@
   "presets": [
     {
       "fullPath": "presets/2025.12/Darkstar_22_Defaults.txt",
-      "hash": "bb456d13766bdde116246b81b33e06d61e57786e2a78d2285179d16819e62c50",
-      "title": "Manuel 5\" Defaults",
+      "hash": "27398f913b0df9ce666cc0c1ee6706131dc41bd555d6798f3ca3f90da0be9db7",
+      "title": "DarkStar 22 Defaults",
       "firmware_version": [
         "2025.12.1"
       ],
@@ -164,7 +166,11 @@
         "defaults",
         "defalut",
         "Manuel",
-        "The12Forest"
+        "The12Forest",
+        "DarkStar",
+        "darkstar",
+        "DarkStar22",
+        "darkstar22"
       ],
       "author": "The12Forest",
       "force_options_review": true,

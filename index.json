@@ -134,7 +134,7 @@
   },
   "uniqueValues": {
     "firmware_version": [
-      "2025.12.1",
+      "2025.12",
       "4.5"
     ],
     "category": [
@@ -155,10 +155,10 @@
   "presets": [
     {
       "fullPath": "presets/2025.12/Darkstar_22_Defaults.txt",
-      "hash": "27398f913b0df9ce666cc0c1ee6706131dc41bd555d6798f3ca3f90da0be9db7",
+      "hash": "7a32cf9d9ebeb4f1139521556bec9e6477a630bf2f50dc0ceb7dff2728a07d22",
       "title": "DarkStar 22 Defaults",
       "firmware_version": [
-        "2025.12.1"
+        "2025.12"
       ],
       "category": "BNF",
       "status": "COMMUNITY",

@@ -1,5 +1,5 @@
 #$ TITLE: DarkStar 22 Defaults
-#$ FIRMWARE_VERSION: 2025.12.1
+#$ FIRMWARE_VERSION: 2025.12
 #$ CATEGORY: BNF
 #$ STATUS: COMMUNITY
 #$ KEYWORDS: defaults, defalut, Manuel, The12Forest, DarkStar, darkstar, DarkStar22, darkstar22

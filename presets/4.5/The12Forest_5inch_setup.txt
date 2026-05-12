@@ -1,0 +1,93 @@
+#$ TITLE: The12Forest 5" Hardware Setup (SPEEDYBEEF7V3)
+#$ FIRMWARE_VERSION: 4.5
+#$ CATEGORY: BNF
+#$ STATUS: COMMUNITY
+#$ KEYWORDS: setup, features, serial, motor, esc, dshot, The12Forest, SpeedyBee, SPEEDYBEEF7V3, F7V3
+#$ AUTHOR: The12Forest
+#$ DESCRIPTION: Hardware-specific setup for The12Forest "Fligt1" 5-inch build on SPEEDYBEEF7V3 (Betaflight 4.5.2).
+#$ DESCRIPTION: Covers feature flags, serial port assignments, motor/ESC configuration, beeper/beacon tweaks,
+#$ DESCRIPTION: and miscellaneous board-level options.
+#$ DESCRIPTION: For gyro/filters, battery thresholds, AUX mode assignments, GPS/failsafe and OSD use the dedicated presets.
+#$ DESCRIPTION:
+#$ DESCRIPTION: Serial port mapping: UART0 = MSP + VTX control (131073), UART1 = ELRS receiver (64), UART5 = GPS (2).
+#$ DESCRIPTION: Features enabled: MOTOR_STOP, GPS, TELEMETRY, DISPLAY, OSD. AIRMODE is explicitly disabled so
+#$ DESCRIPTION: the craft spools down cleanly at zero throttle without fighting the rate controller.
+#$ DESCRIPTION:
+#$ DESCRIPTION: DSHOT bidirectional is ON — requires ESC firmware with RPM telemetry support (e.g. BLHeli_32 or AM32).
+#$ DESCRIPTION: Idle value 530, 12-pole motors. Dynamic idle min RPM is set in the PID preset, not here.
+#$ DESCRIPTION:
+#$ DESCRIPTION: Magnetometer disabled (no mag on this board). FPV mix at 30° matches the camera tilt angle.
+#$ DESCRIPTION: small_angle = 180 allows arming at any attitude (useful for inverted starts).
+#$ DISCLAIMER: Serial port numbers are specific to the SPEEDYBEEF7V3 pinout. Do not apply blindly to other boards.
+#$ WARNING: DSHOT bidirectional requires compatible ESC firmware. Verify before arming.
+#$ DISCUSSION: https://github.com/The12Forest/Betaflight-Presets
+
+defaults nosave
+
+
+#$ OPTION_GROUP BEGIN: Pilot / Craft Names
+    #$ OPTION BEGIN (UNCHECKED): Apply craft & pilot name
+        set craft_name = Fligt1
+        set pilot_name = The12Forest
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Features
+    #$ OPTION BEGIN (CHECKED): Apply feature flags (MOTOR_STOP, GPS, TELEMETRY, DISPLAY, OSD)
+        feature -AIRMODE
+        feature MOTOR_STOP
+        feature GPS
+        feature TELEMETRY
+        feature DISPLAY
+        feature OSD
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Serial Ports
+    #$ OPTION BEGIN (UNCHECKED): Apply serial port assignments (SPEEDYBEEF7V3 specific)
+        serial 0 131073 115200 57600 0 115200
+        serial 1 64 115200 57600 0 115200
+        serial 5 2 115200 115200 0 115200
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Beeper & Beacon
+    #$ OPTION BEGIN (CHECKED): Beeper tweaks (mute GPS_STATUS / ON_USB)
+        beeper -GPS_STATUS
+        beeper -ON_USB
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Beacon on RX_SET
+        beacon RX_SET
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Motor & ESC
+    #$ OPTION BEGIN (CHECKED): DSHOT bidirectional, idle value and motor poles
+        set dshot_idle_value = 530
+        set dshot_bidir = ON
+        set motor_poles = 12
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Misc (Stick endpoints, mag, mixer, small_angle)
+    #$ OPTION BEGIN (CHECKED): Stick endpoints, mag disabled, FPV mix, small_angle
+        set mag_hardware = NONE
+        set min_check = 1000
+        set max_check = 2000
+        set fpv_mix_degrees = 30
+        set small_angle = 180
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): Debug mode = GYRO_SCALED
+        set debug_mode = GYRO_SCALED
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): Blackbox sample rate & filters
+        set blackbox_sample_rate = 1/1
+        set blackbox_disable_mag = ON
+        set blackbox_disable_debug = ON
+    #$ OPTION END
+#$ OPTION_GROUP END

@@ -1,0 +1,338 @@
+#$ TITLE: The12Forest 5" Full Configuration (SPEEDYBEEF7V3)
+#$ FIRMWARE_VERSION: 4.5
+#$ CATEGORY: BNF
+#$ STATUS: COMMUNITY
+#$ KEYWORDS: full, complete, defaults, 5", The12Forest, SpeedyBee, SPEEDYBEEF7V3, F7V3, GPS, rescue, dshot, bidir, elrs, osd, hd
+#$ AUTHOR: The12Forest
+#$ DESCRIPTION: Complete configuration restore for The12Forest "Fligt1" 5-inch build on SPEEDYBEEF7V3 (Betaflight 4.5.2).
+#$ DESCRIPTION: This preset applies every section in one go — it mirrors the CLI backup and is intended for a clean
+#$ DESCRIPTION: flash where you want to restore the full configuration without picking individual sections.
+#$ DESCRIPTION: If you only need specific parts (rates, OSD, GPS, PID, filters) use the dedicated split presets instead.
+#$ DESCRIPTION:
+#$ DESCRIPTION: Hardware: SpeedyBee F7 V3 FC, 5-inch frame, 12-pole motors, ELRS receiver on UART1, GPS on UART5.
+#$ DESCRIPTION: ESC must support DSHOT bidirectional / RPM telemetry (BLHeli_32 or AM32 recommended).
+#$ DESCRIPTION:
+#$ DESCRIPTION: Features: MOTOR_STOP, GPS, TELEMETRY, DISPLAY, OSD enabled. AIRMODE disabled.
+#$ DESCRIPTION: Serial: UART0 = MSP+VTX (131073), UART1 = ELRS (64), UART5 = GPS (2).
+#$ DESCRIPTION: Receiver: channel map ATER1234 (ELRS default). AUX0/1 = arm, AUX2 = Angle, AUX3 = GPS Rescue,
+#$ DESCRIPTION: AUX4 = Turtle/flip-over-crash, AUX5 = Blackbox, AUX7-9 = camera/VTX control.
+#$ DESCRIPTION:
+#$ DESCRIPTION: Gyro: LPF1 static off, LPF2 at 1000 Hz, simplified filter multiplier 200%.
+#$ DESCRIPTION: Motor: dshot_idle 530, bidir ON, 12 poles.
+#$ DESCRIPTION: Battery: standard LiPo cell voltages (4.20/3.66/3.50 V), 1300 mAh capacity set for OSD fuel gauge.
+#$ DESCRIPTION:
+#$ DESCRIPTION: Failsafe: GPS-Rescue activates after 1 s signal loss. Return altitude 100 m, climb 40 m, speed 2200 cm/s.
+#$ DESCRIPTION: GPS: EGNOS SBAS, Galileo enabled, home point locked on first arm.
+#$ DESCRIPTION:
+#$ DESCRIPTION: PID Profile 0: main everyday tune — simplified pipeline, 125% master, 55% FF, BIQUAD D-term, bidir idle.
+#$ DESCRIPTION: PID Profile 1: identical backup with explicit d_max_gain = 40.
+#$ DESCRIPTION: PID Profile 2: safety profile — crash_recovery = DISARM, full pidsum authority, active profile on save.
+#$ DESCRIPTION: Rate Profile 1: 10% expo all axes, 100% super-rate. Rateprofile 3 is restored as active on save.
+#$ DESCRIPTION:
+#$ DESCRIPTION: OSD: full HD layout with GPS, battery, current, ESC RPM/temp, link quality, altitude, flight time.
+#$ DESCRIPTION: Alarms: link quality < 85%, RSSI dBm < -104, cap < 900 mAh, altitude > 120 m.
+#$ DISCLAIMER: Serial port numbers, motor pole count, and idle values are specific to this airframe and ESC combination. Review every section before arming. Hardware-specific values (board ID, acc calibration, signature) are omitted.
+#$ WARNING: DSHOT bidirectional requires compatible ESC firmware. GPS-Rescue is set as the failsafe procedure — verify GPS works.
+#$ DISCUSSION: https://github.com/The12Forest/Betaflight-Presets
+
+defaults nosave
+
+
+#$ OPTION_GROUP BEGIN: Pilot / Craft Names
+    #$ OPTION BEGIN (UNCHECKED): Apply craft & pilot name
+        set craft_name = Fligt1
+        set pilot_name = The12Forest
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Features
+    #$ OPTION BEGIN (CHECKED): Apply feature flags (MOTOR_STOP, GPS, TELEMETRY, DISPLAY, OSD)
+        feature -AIRMODE
+        feature MOTOR_STOP
+        feature GPS
+        feature TELEMETRY
+        feature DISPLAY
+        feature OSD
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Serial Ports
+    #$ OPTION BEGIN (CHECKED): Apply serial port assignments (SPEEDYBEEF7V3 specific)
+        serial 0 131073 115200 57600 0 115200
+        serial 1 64 115200 57600 0 115200
+        serial 5 2 115200 115200 0 115200
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Beeper & Beacon
+    #$ OPTION BEGIN (CHECKED): Beeper tweaks (mute GPS_STATUS / ON_USB)
+        beeper -GPS_STATUS
+        beeper -ON_USB
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Beacon on RX_SET
+        beacon RX_SET
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Receiver - Channel Map & AUX Modes
+    #$ OPTION BEGIN (CHECKED): Channel map ATER1234
+        map ATER1234
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): AUX mode assignments
+        aux 0 0 0 1525 2100 0 0
+        aux 1 0 1 1300 2100 1 0
+        aux 2 1 1 1800 2100 0 0
+        aux 3 46 2 1800 2100 0 0
+        aux 4 13 2 1350 1650 0 0
+        aux 5 28 1 1250 2100 0 0
+        aux 6 30 0 900 900 0 1
+        aux 7 35 3 1800 2100 0 0
+        aux 8 36 4 1425 2100 0 0
+        aux 9 37 5 1825 2100 0 0
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): RX failsafe channel overrides
+        rxfail 3 s 1550
+        rxfail 5 s 2000
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Gyro & Filters
+    #$ OPTION BEGIN (CHECKED): Apply gyro / filter settings
+        set gyro_lpf1_static_hz = 0
+        set gyro_lpf2_static_hz = 1000
+        set gyro_lpf1_dyn_min_hz = 0
+        set simplified_gyro_filter_multiplier = 200
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Motor & ESC
+    #$ OPTION BEGIN (CHECKED): DSHOT bidirectional, idle value and motor poles
+        set dshot_idle_value = 530
+        set dshot_bidir = ON
+        set motor_poles = 12
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Battery
+    #$ OPTION BEGIN (CHECKED): Cell voltage thresholds (4.20 V max / 3.50 V min / 3.66 V warning)
+        set vbat_max_cell_voltage = 420
+        set vbat_min_cell_voltage = 350
+        set vbat_warning_cell_voltage = 366
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Pack capacity — 1300 mAh (adjust to your pack)
+        set bat_capacity = 1300
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Failsafe
+    #$ OPTION BEGIN (CHECKED): Failsafe procedure = GPS-RESCUE
+        set failsafe_delay = 10
+        set failsafe_throttle_low_delay = 300
+        set failsafe_procedure = GPS-RESCUE
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: GPS
+    #$ OPTION BEGIN (CHECKED): GPS basics (EGNOS SBAS, Galileo, home-once)
+        set gps_sbas_mode = EGNOS
+        set gps_ublox_use_galileo = ON
+        set gps_set_home_point_once = ON
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): GPS Rescue tuning
+        set gps_rescue_initial_climb = 40
+        set gps_rescue_return_alt = 100
+        set gps_rescue_ground_speed = 2200
+        set gps_rescue_max_angle = 50
+        set gps_rescue_descent_dist = 25
+        set gps_rescue_descend_rate = 100
+        set gps_rescue_throttle_min = 1130
+        set gps_rescue_throttle_hover = 1226
+        set gps_rescue_min_sats = 6
+        set gps_rescue_allow_arming_without_fix = ON
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Misc (Stick endpoints, mag, mixer, small_angle)
+    #$ OPTION BEGIN (CHECKED): Stick endpoints, mag disabled, FPV mix, small_angle
+        set mag_hardware = NONE
+        set min_check = 1000
+        set max_check = 2000
+        set fpv_mix_degrees = 30
+        set small_angle = 180
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): Debug mode = GYRO_SCALED
+        set debug_mode = GYRO_SCALED
+    #$ OPTION END
+    #$ OPTION BEGIN (UNCHECKED): Blackbox sample rate & filters
+        set blackbox_sample_rate = 1/1
+        set blackbox_disable_mag = ON
+        set blackbox_disable_debug = ON
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: OSD Layout & Alarms
+    #$ OPTION BEGIN (CHECKED): Full HD OSD layout, alarms and stats
+        set osd_warn_bitmask = 523263
+        set osd_rssi_alarm = 0
+        set osd_link_quality_alarm = 85
+        set osd_rssi_dbm_alarm = -104
+        set osd_cap_alarm = 900
+        set osd_alt_alarm = 120
+        set osd_tim2 = 1537
+        set osd_vbat_pos = 2562
+        set osd_rssi_pos = 3503
+        set osd_link_quality_pos = 3564
+        set osd_link_tx_power_pos = 3596
+        set osd_rssi_dbm_pos = 3534
+        set osd_tim_1_pos = 6242
+        set osd_tim_2_pos = 6274
+        set osd_remaining_time_estimate_pos = 2211
+        set osd_flymode_pos = 3630
+        set osd_anti_gravity_pos = 57
+        set osd_g_force_pos = 3310
+        set osd_throttle_pos = 2370
+        set osd_crosshairs_pos = 345
+        set osd_current_pos = 3371
+        set osd_mah_drawn_pos = 3405
+        set osd_motor_diag_pos = 2091
+        set osd_craft_name_pos = 21
+        set osd_pilot_name_pos = 1067
+        set osd_gps_speed_pos = 3149
+        set osd_gps_sats_pos = 3211
+        set osd_home_dir_pos = 2617
+        set osd_home_dist_pos = 3181
+        set osd_flight_dist_pos = 3117
+        set osd_compass_bar_pos = 2101
+        set osd_altitude_pos = 18466
+        set osd_power_pos = 3341
+        set osd_warnings_pos = 14740
+        set osd_avg_cell_voltage_pos = 2594
+        set osd_pit_ang_pos = 2306
+        set osd_rol_ang_pos = 2338
+        set osd_battery_usage_pos = 32932
+        set osd_disarmed_pos = 6614
+        set osd_nvario_pos = 56
+        set osd_esc_tmp_pos = 450
+        set osd_esc_rpm_pos = 1061
+        set osd_esc_rpm_freq_pos = 216
+        set osd_flip_arrow_pos = 2393
+        set osd_core_temp_pos = 2466
+        set osd_log_status_pos = 3471
+        set osd_stick_overlay_left_pos = 1473
+        set osd_stick_overlay_right_pos = 428
+        set osd_rate_profile_name_pos = 55
+        set osd_rcchannels_pos = 181
+        set osd_efficiency_pos = 546
+        set osd_total_flights_pos = 279
+        set osd_sys_distance_pos = 2648
+        set osd_sys_warnings_pos = 2419
+        set osd_sys_vtx_temp_pos = 290
+        set osd_stat_bitmask = 3344894
+        set osd_gps_sats_show_pdop = ON
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: PID Profile 0 (Main)
+    #$ OPTION BEGIN (CHECKED): Apply PID profile 0
+        profile 0
+
+        set dterm_lpf1_type = BIQUAD
+        set p_pitch = 55
+        set i_pitch = 74
+        set d_pitch = 33
+        set f_pitch = 85
+        set p_roll = 53
+        set i_roll = 71
+        set d_roll = 29
+        set f_roll = 82
+        set p_yaw = 53
+        set i_yaw = 71
+        set f_yaw = 82
+        set d_min_roll = 26
+        set d_min_pitch = 29
+        set dyn_idle_min_rpm = 25
+        set simplified_master_multiplier = 125
+        set simplified_i_gain = 75
+        set simplified_d_gain = 70
+        set simplified_pi_gain = 95
+        set simplified_dmax_gain = 35
+        set simplified_feedforward_gain = 55
+        set simplified_dterm_filter = OFF
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: PID Profile 1 (Backup)
+    #$ OPTION BEGIN (CHECKED): Apply PID profile 1
+        profile 1
+
+        set dterm_lpf1_type = BIQUAD
+        set p_pitch = 55
+        set i_pitch = 74
+        set d_pitch = 33
+        set f_pitch = 85
+        set p_roll = 53
+        set i_roll = 71
+        set d_roll = 29
+        set f_roll = 82
+        set p_yaw = 53
+        set i_yaw = 71
+        set f_yaw = 82
+        set d_min_roll = 26
+        set d_min_pitch = 29
+        set d_max_gain = 40
+        set dyn_idle_min_rpm = 25
+        set simplified_master_multiplier = 125
+        set simplified_i_gain = 75
+        set simplified_d_gain = 70
+        set simplified_pi_gain = 95
+        set simplified_dmax_gain = 35
+        set simplified_feedforward_gain = 55
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: PID Profile 2 (Crash-Recovery / Limited)
+    #$ OPTION BEGIN (CHECKED): Apply PID profile 2
+        profile 2
+
+        set crash_recovery = DISARM
+        set pidsum_limit = 1000
+        set pidsum_limit_yaw = 1000
+        set dyn_idle_min_rpm = 25
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+# restore original profile selection
+profile 2
+
+
+#$ OPTION_GROUP BEGIN: Rate Profile 1
+    #$ OPTION BEGIN (CHECKED): Apply rate profile 1 (10% expo, srate 100)
+        rateprofile 1
+
+        set roll_expo = 10
+        set pitch_expo = 10
+        set yaw_expo = 10
+        set roll_srate = 100
+        set pitch_srate = 100
+        set yaw_srate = 100
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+# restore original rateprofile selection
+rateprofile 3

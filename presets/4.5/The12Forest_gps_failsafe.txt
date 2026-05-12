@@ -1,0 +1,50 @@
+#$ TITLE: The12Forest GPS & GPS-Rescue Failsafe
+#$ FIRMWARE_VERSION: 4.5
+#$ CATEGORY: TUNE
+#$ STATUS: COMMUNITY
+#$ KEYWORDS: gps, rescue, failsafe, galileo, sbas, egnos, The12Forest
+#$ AUTHOR: The12Forest
+#$ DESCRIPTION: GPS configuration and GPS-Rescue failsafe settings used by The12Forest on Betaflight 4.5 builds.
+#$ DESCRIPTION: SBAS is set to EGNOS (European correction service) with Galileo constellation enabled for better
+#$ DESCRIPTION: satellite availability and fix accuracy in Europe.
+#$ DESCRIPTION: Home point is locked on first arm — it will not update mid-flight, which is the safest behavior
+#$ DESCRIPTION: for GPS-Rescue return-to-home scenarios.
+#$ DESCRIPTION: Rescue is tuned for a 5-inch quad: initial climb 40 m, return altitude 100 m, ground speed 2200 cm/s,
+#$ DESCRIPTION: max rescue angle 50°, descent at 100 cm/s beginning 25 m from home.
+#$ DESCRIPTION: Throttle during rescue is bounded between 1130 (min) and 1226 (hover estimate).
+#$ DESCRIPTION: Arming without a GPS fix is allowed — disable this if you fly in areas requiring a fix before takeoff.
+#$ DESCRIPTION: Failsafe delay is 10 × 100 ms = 1 s before rescue activates. Low-throttle delay is 300 × 100 ms = 30 s.
+#$ WARNING: This preset sets failsafe_procedure = GPS-RESCUE. Verify GPS is functional and has a home fix before flying.
+#$ DISCUSSION: https://github.com/The12Forest/Betaflight-Presets
+
+defaults nosave
+
+
+#$ OPTION_GROUP BEGIN: GPS
+    #$ OPTION BEGIN (CHECKED): GPS basics (EGNOS SBAS, Galileo, home-once)
+        set gps_sbas_mode = EGNOS
+        set gps_ublox_use_galileo = ON
+        set gps_set_home_point_once = ON
+    #$ OPTION END
+    #$ OPTION BEGIN (CHECKED): GPS Rescue tuning
+        set gps_rescue_initial_climb = 40
+        set gps_rescue_return_alt = 100
+        set gps_rescue_ground_speed = 2200
+        set gps_rescue_max_angle = 50
+        set gps_rescue_descent_dist = 25
+        set gps_rescue_descend_rate = 100
+        set gps_rescue_throttle_min = 1130
+        set gps_rescue_throttle_hover = 1226
+        set gps_rescue_min_sats = 6
+        set gps_rescue_allow_arming_without_fix = ON
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: Failsafe
+    #$ OPTION BEGIN (CHECKED): Failsafe procedure = GPS-RESCUE
+        set failsafe_delay = 10
+        set failsafe_throttle_low_delay = 300
+        set failsafe_procedure = GPS-RESCUE
+    #$ OPTION END
+#$ OPTION_GROUP END

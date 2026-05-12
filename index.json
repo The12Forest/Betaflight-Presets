@@ -138,24 +138,68 @@
       "4.5"
     ],
     "category": [
-      "BNF"
+      "BNF",
+      "FILTERS",
+      "MODES",
+      "OSD",
+      "RATES",
+      "TUNE"
     ],
     "author": [
       "The12Forest"
     ],
     "keywords": [
       "5\"",
+      "alarm",
+      "arm",
+      "aux",
+      "battery",
+      "bidir",
+      "cell",
+      "channel",
+      "complete",
       "DarkStar",
       "DarkStar22",
       "defalut",
       "defaults",
+      "dshot",
+      "dynamic",
+      "egnos",
+      "elrs",
+      "esc",
+      "expo",
       "F7V3",
+      "failsafe",
+      "features",
+      "filter",
+      "full",
+      "galileo",
       "GPS",
+      "gyro",
+      "hd",
+      "layout",
+      "lipo",
+      "lpf",
       "Manuel",
+      "map",
+      "modes",
+      "motor",
+      "osd",
+      "pid",
+      "rates",
+      "receiver",
       "rescue",
+      "sbas",
+      "serial",
+      "setup",
+      "simplified",
       "SpeedyBee",
       "SPEEDYBEEF7V3",
-      "The12Forest"
+      "srate",
+      "The12Forest",
+      "tune",
+      "voltage",
+      "warning"
     ]
   },
   "presets": [
@@ -204,6 +248,202 @@
       "author": "The12Forest",
       "force_options_review": true,
       "priority": 0
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_5inch_full.txt",
+      "hash": "b701c734df5bc669cfc50c17b9dfdbd8149e3deecc014fb1c6bea52be514c54f",
+      "title": "The12Forest 5\" Full Configuration (SPEEDYBEEF7V3)",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "BNF",
+      "status": "COMMUNITY",
+      "keywords": [
+        "full",
+        "complete",
+        "defaults",
+        "5\"",
+        "The12Forest",
+        "SpeedyBee",
+        "SPEEDYBEEF7V3",
+        "F7V3",
+        "GPS",
+        "rescue",
+        "dshot",
+        "bidir",
+        "elrs",
+        "osd",
+        "hd"
+      ],
+      "author": "The12Forest",
+      "priority": 0
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_5inch_setup.txt",
+      "hash": "eacc9544ed6fade0722a506dda946d2110ac06f588885451fdb082452026c26a",
+      "title": "The12Forest 5\" Hardware Setup (SPEEDYBEEF7V3)",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "BNF",
+      "status": "COMMUNITY",
+      "keywords": [
+        "setup",
+        "features",
+        "serial",
+        "motor",
+        "esc",
+        "dshot",
+        "The12Forest",
+        "SpeedyBee",
+        "SPEEDYBEEF7V3",
+        "F7V3"
+      ],
+      "author": "The12Forest",
+      "priority": 0
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_aux.txt",
+      "hash": "88b2bc1aeaea8518487c7feb12b68517596f5e168859fd5170b3459613da590d",
+      "title": "The12Forest AUX Mode Assignments",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "MODES",
+      "status": "COMMUNITY",
+      "keywords": [
+        "aux",
+        "modes",
+        "arm",
+        "channel",
+        "map",
+        "receiver",
+        "elrs",
+        "The12Forest"
+      ],
+      "author": "The12Forest",
+      "priority": 0
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_battery.txt",
+      "hash": "412709b60e385ffa4fee92f81313cbfd7bbae70e72bd4958f40b4048cda37ca1",
+      "title": "The12Forest Battery Cell Voltage Thresholds",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "TUNE",
+      "status": "COMMUNITY",
+      "keywords": [
+        "battery",
+        "voltage",
+        "cell",
+        "lipo",
+        "warning",
+        "alarm",
+        "The12Forest"
+      ],
+      "author": "The12Forest",
+      "priority": 1000000000000
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_gps_failsafe.txt",
+      "hash": "c8320793daa301da74c7276de90bc53c3a6fa01c6fde8c2b66b51b0b616b2614",
+      "title": "The12Forest GPS & GPS-Rescue Failsafe",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "TUNE",
+      "status": "COMMUNITY",
+      "keywords": [
+        "gps",
+        "rescue",
+        "failsafe",
+        "galileo",
+        "sbas",
+        "egnos",
+        "The12Forest"
+      ],
+      "author": "The12Forest",
+      "priority": 1000000000000
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_gyro_filters.txt",
+      "hash": "ad35226c02ec5cfd17d0b3b5def3aaa4fa1195682dd809bc9ab698c5b3b754b7",
+      "title": "The12Forest Gyro & Filter Settings",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "FILTERS",
+      "status": "COMMUNITY",
+      "keywords": [
+        "gyro",
+        "filter",
+        "lpf",
+        "dynamic",
+        "simplified",
+        "The12Forest"
+      ],
+      "author": "The12Forest",
+      "priority": 100
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_osd.txt",
+      "hash": "22080088fd1807bcd574455179b76407994fdf69ea80dec90b8a8c28e1b88509",
+      "title": "The12Forest OSD Layout",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "OSD",
+      "status": "COMMUNITY",
+      "keywords": [
+        "osd",
+        "layout",
+        "hd",
+        "The12Forest"
+      ],
+      "author": "The12Forest",
+      "priority": 0
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_pid.txt",
+      "hash": "e6cc89736b445b281974c1ff521249c5e5f10ed6e2d32b56cafbf239043ad07e",
+      "title": "The12Forest 5\" PID Profiles",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "TUNE",
+      "status": "COMMUNITY",
+      "keywords": [
+        "pid",
+        "tune",
+        "5\"",
+        "The12Forest",
+        "SpeedyBee",
+        "SPEEDYBEEF7V3",
+        "F7V3",
+        "dshot",
+        "bidir"
+      ],
+      "author": "The12Forest",
+      "priority": 1000000000000
+    },
+    {
+      "fullPath": "presets/4.5/The12Forest_rates.txt",
+      "hash": "56f139cad6fb919f580ccb64b6276172e5aa66a7749b4772c96a23857b00f333",
+      "title": "The12Forest Rate Profile",
+      "firmware_version": [
+        "4.5"
+      ],
+      "category": "RATES",
+      "status": "COMMUNITY",
+      "keywords": [
+        "rates",
+        "expo",
+        "srate",
+        "The12Forest"
+      ],
+      "author": "The12Forest",
+      "priority": 10000
     }
   ]
 }

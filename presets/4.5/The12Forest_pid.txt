@@ -1,0 +1,93 @@
+#$ TITLE: The12Forest 5" PID Profiles
+#$ FIRMWARE_VERSION: 4.5
+#$ CATEGORY: TUNE
+#$ STATUS: COMMUNITY
+#$ KEYWORDS: pid, tune, 5", The12Forest, SpeedyBee, SPEEDYBEEF7V3, F7V3, dshot, bidir
+#$ AUTHOR: The12Forest
+#$ DESCRIPTION: Three PID profiles used by The12Forest on the "Fligt1" 5-inch build (SPEEDYBEEF7V3, Betaflight 4.5.2).
+#$ DESCRIPTION: Profile 0 is the primary everyday tune — simplified slider pipeline with BIQUAD D-term filter disabled,
+#$ DESCRIPTION: 125% master multiplier, 75% I-gain, and feedforward at 55% for a punchy but controlled feel.
+#$ DESCRIPTION: Profile 1 is an identical backup profile with an explicit d_max_gain of 40 set for reference.
+#$ DESCRIPTION: Profile 2 is a safety / crash-recovery profile with crash_recovery = DISARM and full PID authority
+#$ DESCRIPTION: (pidsum_limit 1000) intended for testing or recovery situations where stability matters over performance.
+#$ DESCRIPTION: Dynamic idle RPM is set to 25 across all profiles to keep motors spinning cleanly with DSHOT bidirectional.
+#$ DESCRIPTION: Hardware: 5-inch frame, 12-pole motors, SPEEDYBEEF7V3 FC, DSHOT bidirectional enabled.
+#$ DISCUSSION: https://github.com/The12Forest/Betaflight-Presets
+
+defaults nosave
+
+
+#$ OPTION_GROUP BEGIN: PID Profile 0 (Main)
+    #$ OPTION BEGIN (CHECKED): Apply PID profile 0
+        profile 0
+
+        set dterm_lpf1_type = BIQUAD
+        set p_pitch = 55
+        set i_pitch = 74
+        set d_pitch = 33
+        set f_pitch = 85
+        set p_roll = 53
+        set i_roll = 71
+        set d_roll = 29
+        set f_roll = 82
+        set p_yaw = 53
+        set i_yaw = 71
+        set f_yaw = 82
+        set d_min_roll = 26
+        set d_min_pitch = 29
+        set dyn_idle_min_rpm = 25
+        set simplified_master_multiplier = 125
+        set simplified_i_gain = 75
+        set simplified_d_gain = 70
+        set simplified_pi_gain = 95
+        set simplified_dmax_gain = 35
+        set simplified_feedforward_gain = 55
+        set simplified_dterm_filter = OFF
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: PID Profile 1 (Backup)
+    #$ OPTION BEGIN (CHECKED): Apply PID profile 1
+        profile 1
+
+        set dterm_lpf1_type = BIQUAD
+        set p_pitch = 55
+        set i_pitch = 74
+        set d_pitch = 33
+        set f_pitch = 85
+        set p_roll = 53
+        set i_roll = 71
+        set d_roll = 29
+        set f_roll = 82
+        set p_yaw = 53
+        set i_yaw = 71
+        set f_yaw = 82
+        set d_min_roll = 26
+        set d_min_pitch = 29
+        set d_max_gain = 40
+        set dyn_idle_min_rpm = 25
+        set simplified_master_multiplier = 125
+        set simplified_i_gain = 75
+        set simplified_d_gain = 70
+        set simplified_pi_gain = 95
+        set simplified_dmax_gain = 35
+        set simplified_feedforward_gain = 55
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+#$ OPTION_GROUP BEGIN: PID Profile 2 (Crash-Recovery / Limited)
+    #$ OPTION BEGIN (CHECKED): Apply PID profile 2
+        profile 2
+
+        set crash_recovery = DISARM
+        set pidsum_limit = 1000
+        set pidsum_limit_yaw = 1000
+        set dyn_idle_min_rpm = 25
+    #$ OPTION END
+#$ OPTION_GROUP END
+
+
+# restore original profile selection
+profile 2
